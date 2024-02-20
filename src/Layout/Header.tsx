@@ -41,7 +41,6 @@ const Header: React.FC<HeaderProps> = ({ mobileOpen, handleDrawerToggle }) => {
     console.log(e)
   }
   function abc2() {
-    // Update the storedLoginStatus variable
     storedLoginStatus = 'false';
   
     // Update the value in localStorage
