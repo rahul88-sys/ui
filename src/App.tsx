@@ -4,9 +4,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import PageNotFound from './pages/PageNotFound';
+import Signup from './pages/signup';
 import { Login } from './pages/login';
 import PrivateRoute from './pages/PrivateRoute';
-import Signup from './pages/signup';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,15 +22,13 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route
+        <Route
           path="/"
           element={
             isLoggedIn ? (
-              // Redirect to Home component for logged-in users
               <PrivateRoute element={<Home />} isLoggedIn={isLoggedIn} />
             ) : (
-              // Display Home component for non-logged-in users
-              <Home />
+              <Navigate to="/login" />
             )
           }
         />
