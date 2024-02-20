@@ -4,9 +4,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import PageNotFound from './pages/PageNotFound';
-import Signup from './pages/signup';
 import { Login } from './pages/login';
 import PrivateRoute from './pages/PrivateRoute';
+import Signup from './pages/signup';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
