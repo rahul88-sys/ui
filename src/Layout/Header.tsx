@@ -1,26 +1,37 @@
-// Header.jsx
-import React from 'react';
-import { Box, AppBar, Typography, Toolbar, IconButton, Drawer, Paper, List, ListItem, ListItemText } from '@mui/material';
-import MeetingRoomSharpIcon from '@mui/icons-material/MeetingRoomSharp';
-import { Link, useNavigate } from 'react-router-dom';
-import MenuOpenSharpIcon from '@mui/icons-material/MenuOpenSharp';
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import React from "react";
+import {
+  Box,
+  AppBar,
+  Typography,
+  Toolbar,
+  IconButton,
+  Drawer,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  Tooltip,
+} from "@mui/material";
+import MeetingRoomSharpIcon from "@mui/icons-material/MeetingRoomSharp";
+import { Link, useNavigate } from "react-router-dom";
+import MenuOpenSharpIcon from "@mui/icons-material/MenuOpenSharp";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 interface HeaderProps {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ mobileOpen, handleDrawerToggle }) => {
-  let storedLoginStatus = localStorage.getItem('isLoggedIn') || 'false';
+  let storedLoginStatus = localStorage.getItem("isLoggedIn") || "false";
 
-  console.log("1234",storedLoginStatus)
+  console.log("1234", storedLoginStatus);
   const history = useNavigate();
   // menu drawer
   const drawer = (
-    <List onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <List onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <ListItem button component={Link} to="/">
-        <Typography variant='h6' sx={{ display: 'flex', alignItems: 'center' }}>
+        <Typography variant="h6" sx={{ display: "flex", alignItems: "center" }}>
           <MeetingRoomSharpIcon />
           Conference
         </Typography>
@@ -37,72 +48,78 @@ const Header: React.FC<HeaderProps> = ({ mobileOpen, handleDrawerToggle }) => {
     </List>
   );
   function abc(e: any) {
-    history('/login');
-    console.log(e)
+    history("/login");
+    console.log(e);
   }
   function abc2() {
-    storedLoginStatus = 'false';
-  
+    storedLoginStatus = "false";
+
     // Update the value in localStorage
-    localStorage.setItem('isLoggedIn', 'false');
-  
+    localStorage.setItem("isLoggedIn", "false");
+
     // Redirect to the login page
-    history('/login');
+    history("/login");
   }
   return (
     <Box>
-      <AppBar sx={{ bgcolor: 'lightblue' }}>
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        {storedLoginStatus==='true'&&
-          <IconButton
-            color='inherit'
-            aria-label="open drawer"
-            edge="start"
-            sx={{ mr: 2, '& .MuiSvgIcon-root': { fontSize: '3rem' } }}
-            onClick={handleDrawerToggle}
-          >
-            <MenuOpenSharpIcon />
-          </IconButton>
-  }
+      <AppBar sx={{ bgcolor: "primary" }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          {storedLoginStatus === "true" && (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              sx={{ mr: 2, "& .MuiSvgIcon-root": { fontSize: "3rem" } }}
+              onClick={handleDrawerToggle}
+            >
+              <MenuOpenSharpIcon />
+            </IconButton>
+          )}
           <Box component="nav">
             <Box component="nav">
               <Drawer
-                variant='temporary'
+                variant="temporary"
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
               >
-                <Paper sx={{ width: 250 }} role="presentation" onClick={handleDrawerToggle}>
+                <Paper
+                  sx={{ width: 250 }}
+                  role="presentation"
+                  onClick={handleDrawerToggle}
+                >
                   {drawer}
                 </Paper>
               </Drawer>
             </Box>
           </Box>
-          {storedLoginStatus!=='true'&&
-          <IconButton
-            color='inherit'
-            aria-label="open drawer"
-            edge="start"
-            sx={{ '& .MuiSvgIcon-root': { fontSize: '3rem' } }}
-            onClick={abc}
-          >
-            <PersonAddAlt1Icon />
-          </IconButton>
-}
-          {storedLoginStatus==='true'&&
-          <IconButton
-            color='inherit'
-            aria-label="open drawer"
-            edge="start"
-            sx={{ '& .MuiSvgIcon-root': { fontSize: '3rem' } }}
-            onClick={abc2}
-          >
-            <ExitToAppIcon />
-          </IconButton>
-}
+          {storedLoginStatus !== "true" && (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              sx={{ "& .MuiSvgIcon-root": { fontSize: "3rem" } }}
+              onClick={abc}
+            >
+              <PersonAddAlt1Icon />
+            </IconButton>
+          )}
+          {storedLoginStatus === "true" && (
+            <Tooltip title="Logout" arrow>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                sx={{ "& .MuiSvgIcon-root": { fontSize: "3rem" } }}
+                onClick={abc2}
+              >
+                <ExitToAppIcon />
+              </IconButton>
+            </Tooltip>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
 
 export default Header;
