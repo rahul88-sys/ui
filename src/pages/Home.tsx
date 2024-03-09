@@ -49,7 +49,7 @@ const Home = () => {
         <HomeContent>
           
           <img src={meetingIcon} alt="Meeting Icon" />
-          <h2>Welcome to Confrence</h2>
+          <h2>Welcome!</h2>
           <p>
             Join virtual meetings, collaborate with your team, and stay connected wherever you are.
           </p>
