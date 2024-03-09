@@ -1,39 +1,31 @@
-import React, { Children, ReactNode, useState } from 'react'
-import Header from './Header'
+import React, { Children, ReactNode, useState } from "react";
+import Header from "./Header";
+import { Paper } from "@mui/material";
 export interface HrsFormProps {
-    children: ReactNode;
-  }
-  
-const HrsForm = (props:HrsFormProps) => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  
-    const handleDrawerToggle = () => {
-      console.log("mobileOpen",mobileOpen)
-      setMobileOpen(!mobileOpen);
-    }
-    
-  return (
-    <>
-    <div >
-    <Header mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
-    </div>
-    <div style={{backgroundColor:'lightgray',
-    marginTop:'64px', 
-    height: '100vh' ,
-    marginLeft:mobileOpen?'250px':'0px',
-    
-    }}
-    >
-      <div style={{
-        marginLeft:mobileOpen?'10px':'100px'
-        
-        }}>
-        {props.children}
-        </div>
-    </div>
-    
-    </>
-  )
+  children: ReactNode;
 }
 
-export default HrsForm
+const HrsForm = (props: HrsFormProps) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    console.log("mobileOpen", mobileOpen);
+    setMobileOpen(!mobileOpen);
+  };
+
+  return (
+    <>
+      <Paper style={{ height: '100vh', width: '100%', overflow: 'auto' }}>
+      <Header
+          mobileOpen={mobileOpen}
+          handleDrawerToggle={handleDrawerToggle}
+        /><br/><br/><br/><br/>
+        <div style={{marginLeft:mobileOpen ?'250px':'100px'}}>
+        {props.children}
+        </div>
+      </Paper>
+    </>
+  );
+};
+
+export default HrsForm;

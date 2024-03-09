@@ -11,12 +11,15 @@ import {
   ListItem,
   ListItemText,
   Tooltip,
+  Collapse,
 } from "@mui/material";
 import MeetingRoomSharpIcon from "@mui/icons-material/MeetingRoomSharp";
 import { Link, useNavigate } from "react-router-dom";
 import MenuOpenSharpIcon from "@mui/icons-material/MenuOpenSharp";
+import AppsIcon from '@mui/icons-material/Apps';
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 interface HeaderProps {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
@@ -30,23 +33,26 @@ const Header: React.FC<HeaderProps> = ({ mobileOpen, handleDrawerToggle }) => {
   // menu drawer
   const drawer = (
     <List onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <ListItem button component={Link} to="/">
-        <Typography variant="h6" sx={{ display: "flex", alignItems: "center" }}>
-          <MeetingRoomSharpIcon />
+      <ListItem sx={{ padding: 0 }} >
+        {/* Below will be change in future*/}
+        {/* <Typography variant="h6" sx={{ display: "flex", alignItems: "center" }}>
           Conference
-        </Typography>
+        </Typography> */}
       </ListItem>
-      <ListItem button component={Link} to="/">
+      {/* <Collapse> */}
+      <ListItem button component={Link} to="/" >
         <ListItemText primary="Home" />
       </ListItem>
-      <ListItem button component={Link} to="/about">
-        <ListItemText primary="About" />
+      <ListItem button component={Link} to="/about"sx={{ paddingTop: '8px', paddingBottom: '8px' }}>
+        <ListItemText primary="Meeting" />
       </ListItem>
-      <ListItem button component={Link} to="/contact">
+      <ListItem button component={Link} to="/contact"sx={{ paddingTop: '8px', paddingBottom: '8px' }}>
         <ListItemText primary="Contact" />
       </ListItem>
+      {/* </Collapse> */}
     </List>
   );
+  
   function abc(e: any) {
     history("/login");
     console.log(e);
@@ -69,10 +75,10 @@ const Header: React.FC<HeaderProps> = ({ mobileOpen, handleDrawerToggle }) => {
               color="inherit"
               aria-label="open drawer"
               edge="start"
-              sx={{ mr: 2, "& .MuiSvgIcon-root": { fontSize: "3rem" } }}
+              sx={{ mr: 2, "& .MuiSvgIcon-root": { fontSize: "2rem" } }}
               onClick={handleDrawerToggle}
             >
-              <MenuOpenSharpIcon />
+              <AppsIcon />
             </IconButton>
           )}
           <Box component="nav">
@@ -86,6 +92,7 @@ const Header: React.FC<HeaderProps> = ({ mobileOpen, handleDrawerToggle }) => {
                   sx={{ width: 250 }}
                   role="presentation"
                   onClick={handleDrawerToggle}
+                  style={{height: '100vh',overflow: 'auto'}}
                 >
                   {drawer}
                 </Paper>
@@ -109,10 +116,10 @@ const Header: React.FC<HeaderProps> = ({ mobileOpen, handleDrawerToggle }) => {
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
-                sx={{ "& .MuiSvgIcon-root": { fontSize: "3rem" } }}
+                sx={{ "& .MuiSvgIcon-root": { fontSize: "2rem" } }}
                 onClick={abc2}
               >
-                <ExitToAppIcon />
+                <LogoutTwoToneIcon />
               </IconButton>
             </Tooltip>
           )}
